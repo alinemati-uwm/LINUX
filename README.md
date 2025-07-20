@@ -184,28 +184,5 @@ free -h
 df -h
 ```
 
----
 
-## 🔗 Best Practices
 
-* Back up `/etc/fstab` before editing.
-* Monitor available disk space before creating swap.
-* Be cautious with SSDs — swap can wear them over time.
-* On cloud VMs, confirm if swap is already provisioned.
-* Only disable services you fully understand.
-
----
-
-### Additional important points:
-
-✅ Before creating swap, check if you already have enough physical RAM and swap — overusing swap on SSD can wear it.
-✅ Always back up `/etc/fstab` before editing it:
-
-```bash
-sudo cp /etc/fstab /etc/fstab.bak
-```
-
-✅ For swap, consider using `dd` instead of `fallocate` on some filesystems (like XFS, Btrfs) that don’t fully support `fallocate`.
-✅ Monitor disk space before allocating swap — don’t fill your root partition completely.
-✅ On cloud VMs, confirm whether the provider already provisions swap.
-✅ For disabling services: disable only what you fully understand; disabling critical services can make your system unbootable.
