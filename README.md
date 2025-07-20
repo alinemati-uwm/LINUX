@@ -25,12 +25,17 @@ sudo swapon --show
 
 ---
 
+## Check System RAM
+```bash
+free -h
+```
+
 ## 🧊 Create Swap File
 
 ```bash
-sudo fallocate -l 2G /swapfile
+sudo fallocate -l 8G /swapfile
 # OR if fallocate is unsupported:
-sudo dd if=/dev/zero of=/swapfile bs=1M count=2048
+sudo dd if=/dev/zero of=/swapfile bs=1M count=8192
 ```
 
 ---
@@ -49,6 +54,8 @@ sudo chmod 600 /swapfile
 sudo mkswap /swapfile
 ```
 
+
+
 ---
 
 ## 🚀 Activate Swap
@@ -64,6 +71,7 @@ sudo swapon /swapfile
 ```bash
 sudo cp /etc/fstab /etc/fstab.bak
 echo '/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab
+
 ```
 
 ---
